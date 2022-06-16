@@ -15,4 +15,4 @@ app.get('/database', (req, res) => {
   res.render('pages/db',data);
 });
 
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
