@@ -21,10 +21,10 @@ app.post("/adduser", (req, res) => {
   var uname = req.body.uname;
   var age = req.body.age;
   // res.send(`usersname: ${uname}, age: ${age}`);
-  var addUserData = { uname, age };
+  var addUserData = { userName: { uname }, userAge: { age } };
   console.log("addUserData object", addUserData);
-  console.log("addUserData.uname object", addUserData.uname);
-  console.log("addUserData.age object", addUserData.age);
+  console.log("addUserData.userName object", addUserData.userName);
+  console.log("addUserData.userAge object", addUserData.userAge);
   res.render("pages/addUser", addUserData);
 });
 
