@@ -1,12 +1,13 @@
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
+const psqlPassword = '123psql'
 
 //to access postgres
 const { Pool } = require("pg");
 var pool;
 pool = new Pool({
-  connectionString: "postgres://postgres:root@localhost/student",
+  connectionString: `postgres://postgres:${psqlPassword}@localhost/student`,
 });
 
 // to set up server
@@ -17,15 +18,19 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => res.render("pages/index"));
+app.get("/", (req, res) => {
+  res.render("pages/index");
+});
 
 app.get("/database", (req, res) => {
-  var getUsersQuery = `SELECT * from student`;
+  var getUsersQuery = `SELECT * FROM student`;
   pool.query(getUsersQuery, (error, result) => {
     if (error) {
       res.end(error);
     }
-    var results = { rows: result.rows };
+    console.log("result",result.rows);
+    console.log("result.rows[0].name",result.rows[0].name);
+    var results = { 'rows': result.rows };
     res.render("pages/db", results);
   });
 });

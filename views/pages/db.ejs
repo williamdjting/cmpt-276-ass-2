@@ -11,10 +11,18 @@
       <h2>Database Results</h2>
 
       <ul>
-        <% results.forEach(function(r) { %>
-        <!-- <li><%= r.id %> - <%= r.name %></li> -->
-        <li><%= r %></li>
-        <% }); %>
+
+        <% for (var i =0; i < rows.length; i++) { %>
+          <tr>
+            <td><%= rows[i].name %></td>
+            <td><%= rows[i].weight %></td>
+            <td><%= rows[i].height %></td>
+            <td><%= rows[i].haircolor %></td>
+            <td><%= rows[i].gpa %></td>
+            <br>
+          </tr>
+        <% } %>
+
       </ul>
     </div>
   </body>
