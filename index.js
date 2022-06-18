@@ -20,8 +20,16 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => res.render("pages/index"));
 
 app.get("/database", (req, res) => {
-  var data = { results: [2, 3, 4, 5, 6, 7] };
-  res.render("pages/db", data);
+  var getUsersQuery = `SELECT * from student`;
+  pool.query(getUsersQuery, (error, result) => {
+    if (error) {
+      res.end(error);
+    }
+    var results = {'rows':result.rows};
+    res.render('pages/db', results);
+
+
+  }
 });
 
 app.post("/adduser", (req, res) => {
