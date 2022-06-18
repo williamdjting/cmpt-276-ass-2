@@ -2,6 +2,14 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
 
+//to access postgres
+const { Pool } = require("pg");
+var pool;
+pool = new Pool({
+  connectionString: "postgres://postgres:root@localhost/student",
+});
+
+// to set up server
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
