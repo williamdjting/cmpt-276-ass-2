@@ -25,11 +25,9 @@ app.get("/database", (req, res) => {
     if (error) {
       res.end(error);
     }
-    var results = {'rows':result.rows};
-    res.render('pages/db', results);
-
-
-  }
+    var results = { rows: result.rows };
+    res.render("pages/db", results);
+  });
 });
 
 app.post("/adduser", (req, res) => {
