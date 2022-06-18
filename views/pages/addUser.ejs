@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include ("../partials/header.ejs") %>
+    <title>Our Funky HTML Page</title>
+    <meta name="description" content="Our first page" />
+    <meta name="keywords" content="html tutorial template" />
   </head>
-
   <body>
-    <%- include ("../partials/nav.ejs") %>
+    <h1>Users</h1>
 
-    <div class="container">
-      <h2>addUserData Results</h2>
+    <form class="" action="/adduser" method="post">
+      <input type="text" name="name" value="" placeholder="Name" /> <br />
+      <input type="number" name="weight" value="" placeholder="Weight" /> <br />
+      <input type="number" name="height" value="" placeholder="Height" /> <br />
+      <input type="text" name="Haircolor" value="" placeholder="Haircolor" /> <br />
+      <input type="number" step="0.1" name="GPA" value="" placeholder="GPA" /> <br />
+      <!-- <input type="submit" name="sub" value="SEND TO SERVER" /> -->
+      <button id="button" type="submit" name="adduserbutton">Add User</button>
+    </form>
 
-      <ul>
-        <li>Username: <%= userName.uname %> - Age:<%= userAge.age %></li>
-      </ul>
-    </div>
+    <script type="text/javascript" src="./script.js"></script>
+
+    <script type="text/javascript" src="./advanced.js"></script>
   </body>
 </html>
+
