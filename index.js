@@ -35,6 +35,12 @@ app.get("/database", (req, res) => {
   });
 });
 
+app.get("/changeuser", (req, res) => {
+  console.log("req.body inside /changeuser",req.body);
+
+  res.render("pages/changeUser");
+});
+
 app.get("/adduser", (req, res) => {
   res.render("pages/addUser");
 });
@@ -47,11 +53,37 @@ app.post("/adduser", (req, res) => {
   var haircolor = req.body.haircolor;
   var gpa = req.body.gpa;
   // var getUsersQuery = `INSERT INTO student (name, weight, height, haircolor, gpa) VALUES ('${name}','${weight}','${height}','${haircolor}','${gpa}')`;
-  var getUsersQuery = "INSERT INTO student VALUES ('will2', 125,100,'red',2.5)";
+  // var getUsersQuery = "INSERT INTO student VALUES ('will2', 125,100,'red',2.5)";
   // var getUsersQuery = "INSERT INTO student (name, weight, height, hcolor, gpa) VALUES ('" + name + "', " + weight + " , " + height + ",'" + haircolor + "', " + gpa + ")";
 
   console.log("post request for getUsersQuery");
-  pool.query(getUsersQuery, (error, result) => {
+  pool.query('INSERT INTO student VALUES ($1, $2, $3, $4, $5)', [name, weight, height, haircolor, gpa], (error, result) => {
+    if (error) {
+      res.send(error);
+    }
+    console.log("post request for pool.query");
+    // var results = { 'rows': result.rows };
+    // res.render("pages/db", results);
+    res.redirect("/database");
+  });
+  console.log("post request for after getUsersQuery");
+
+});
+
+app.post("/changeuser", (req, res) => {
+  console.log("post request for /changeuser");
+  var name = req.body.name;
+  var weight = req.body.weight;
+  var height = req.body.height;
+  var haircolor = req.body.haircolor;
+  var gpa = req.body.gpa;
+  var id = req.body.id;
+  // var getUsersQuery = `INSERT INTO student (name, weight, height, haircolor, gpa) VALUES ('${name}','${weight}','${height}','${haircolor}','${gpa}')`;
+  // var getUsersQuery = "INSERT INTO student VALUES ('will2', 125,100,'red',2.5)";
+  // var getUsersQuery = "INSERT INTO student (name, weight, height, hcolor, gpa) VALUES ('" + name + "', " + weight + " , " + height + ",'" + haircolor + "', " + gpa + ")";
+
+  console.log("post request for getUsersQuery");
+  pool.query('INSERT INTO student VALUES ($1, $2, $3, $4, $5)', [name, weight, height, haircolor, gpa], (error, result) => {
     if (error) {
       res.send(error);
     }

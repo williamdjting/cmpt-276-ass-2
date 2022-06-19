@@ -19,6 +19,13 @@
             <td><%= rows[i].height %></td>
             <td><%= rows[i].haircolor %></td>
             <td><%= rows[i].gpa %></td>
+            <td>
+            <form class="" action="/changeuser" method="get">
+              
+              <button id="button" type="submit" name="adduserbutton">Change User</button>
+              <td><%= rows[i].id %></td>
+            </form>
+            </td>
             <br>
           </tr>
         <% } %>
