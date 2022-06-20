@@ -15,21 +15,22 @@
         <% for (var i =0; i < rows.length; i++) { %>
           <% var idIS = rows[i].id %>
           <tr>
-            <form class="" action="/users/id" method="post" >
-            <input type="hidden" name="rowID" value=<%= idIS %> />
             <td><%= rows[i].name %></td>
             <td><%= rows[i].weight %></td>
             <td><%= rows[i].height %></td>
             <td><%= rows[i].haircolor %></td>
             <td><%= rows[i].gpa %></td>
-            <% var username = rows[i].id %>
             <td>
-            
               <!-- <input type="text" name="username" value=""/> -->
+            <form class="" action="/changeuser" method="post" >
+              <input type="hidden" name="rowID" value=<%= idIS %> />
               <button id="changeuserbutton" type="submit" name="username">Change User</button>
-              <td><%= rows[i].id %></td>
-              <td><%= username %></td>
             </form>
+            <form class="" action="/deleteuser" method="post" >
+              <input type="hidden" name="rowID" value=<%= idIS %> />
+              <button id="deleteuserbutton" type="submit" name="username">Delete User</button>
+            </form>
+
             </td>
             <br>
           </tr>

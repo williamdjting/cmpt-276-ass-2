@@ -6,7 +6,7 @@
     <meta name="keywords" content="html tutorial template" />
   </head>
   <body>
-    <h1>Updating the user:</h1>
+    <h1>Changing the user:</h1>
     <tr>
       <td><%= rows[0].name %></td>
       <td><%= rows[0].weight %></td>
@@ -14,7 +14,7 @@
       <td><%= rows[0].haircolor %></td>
       <td><%= rows[0].gpa %></td>
     </tr>
-    <form class="" action="/changeuser" method="post">
+    <form class="" action="/changeduser" method="post">
       <input type="text" name="name" value="" placeholder=<%= rows[0].name %> /> <br />
       <input type="number" name="weight" value="" placeholder=<%= rows[0].weight %> /> <br />
       <input type="number" name="height" value="" placeholder=<%= rows[0].height %> /> <br />
