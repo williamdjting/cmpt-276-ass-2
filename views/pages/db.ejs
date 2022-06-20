@@ -2,9 +2,11 @@
 <html>
   <head>
     <%- include ("../partials/header.ejs") %>
+    <title>CMPT 276 - Asn 2</title>
   </head>
 
   <body>
+    
     <%- include ("../partials/nav.ejs") %>
 
     <div class="container">
@@ -14,13 +16,15 @@
 
         <% for (var i =0; i < rows.length; i++) { %>
           <% var idIS = rows[i].id %>
-          <tr>
-            <td><%= rows[i].name %></td>
-            <td><%= rows[i].weight %></td>
-            <td><%= rows[i].height %></td>
-            <td><%= rows[i].haircolor %></td>
-            <td><%= rows[i].gpa %></td>
-            <td>
+
+
+            <ul style="<%=`border-style: solid; border-width: 5px; border-color: red; height: ${rows[i].height}px; width: ${rows[i].weight}px; overflow:` %>">
+              <li style="<%=`color: ${rows[i].haircolor};`%>"><%= rows[i].name %></li>
+              <li><%= rows[i].weight %></li>
+              <li><%= rows[i].height %></li>
+              <li><%= rows[i].haircolor %></li>
+              <li><%= rows[i].gpa %></li>
+            </ul>
               <!-- <input type="text" name="username" value=""/> -->
             <form class="" action="/changeuser" method="post" >
               <input type="hidden" name="rowID" value=<%= idIS %> />
@@ -31,12 +35,10 @@
               <button id="deleteuserbutton" type="submit" name="username">Delete User</button>
             </form>
 
-            </td>
             <br>
-          </tr>
         <% } %>
 
-      </ul>
+          </ul>
     </div>
   </body>
 </html>

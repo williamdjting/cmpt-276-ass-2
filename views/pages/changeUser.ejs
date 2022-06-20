@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+  
   <head>
-    <title>Our Funky HTML Page</title>
-    <meta name="description" content="Our first page" />
-    <meta name="keywords" content="html tutorial template" />
+    <%- include ("../partials/header.ejs") %>
+    <title>CMPT 276 - Asn 2</title>
   </head>
   <body>
-    <h1>Changing the user:</h1>
+    <%- include ("../partials/nav.ejs") %>
+    <div class="container">
+    <h1>Update the User</h1>
     <tr>
       <td><%= rows[0].name %></td>
       <td><%= rows[0].weight %></td>
@@ -14,19 +16,21 @@
       <td><%= rows[0].haircolor %></td>
       <td><%= rows[0].gpa %></td>
     </tr>
+    <% var idIS = rows[0].id %>
     <form class="" action="/changeduser" method="post">
       <input type="text" name="name" value="" placeholder=<%= rows[0].name %> /> <br />
       <input type="number" name="weight" value="" placeholder=<%= rows[0].weight %> /> <br />
       <input type="number" name="height" value="" placeholder=<%= rows[0].height %> /> <br />
       <input type="text" name="haircolor" value="" placeholder=<%= rows[0].haircolor %> /> <br />
       <input type="number" step="0.1" name="gpa" value="" placeholder=<%= rows[0].gpa %> /> <br />
-      <!-- <input type="submit" name="sub" value="SEND TO SERVER" /> -->
+      <input type="hidden" name="rowID" value=<%= idIS %> />
       <button id="button" type="submit" name="changeuserbutton">Change User</button>
     </form>
 
     <script type="text/javascript" src="./script.js"></script>
 
     <script type="text/javascript" src="./advanced.js"></script>
+  </div>
   </body>
 </html>
 

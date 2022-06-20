@@ -18,23 +18,32 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
-  res.render("pages/index");
-});
+// app.get("/", (req, res) => {
+//   res.render("pages/index");
+// });
 
-app.get("/database", (req, res) => {
+app.get("/", (req, res) => {
   var getUsersQuery = `SELECT * FROM student`;
   pool.query(getUsersQuery, (error, result) => {
     if (error) {
-      res.end(error);
+      res.send(error);
     }
+    console.log("result",result);
+    if (result.rowCount === 0) {
+      res.redirect("/addNewUser");
+    }
+    else {
     console.log("result",result.rows);
     console.log("result.rows[0].name",result.rows[0].name);
     var results = { 'rows': result.rows };
     res.render("pages/db", results);
+    }
   });
 });
 
+app.get("/addnewuser", (req, res) => {
+  res.render("pages/addNewUser");
+});
 
 
 app.get("/adduser", (req, res) => {
@@ -60,49 +69,85 @@ app.post("/adduser", (req, res) => {
     console.log("post request for pool.query");
     // var results = { 'rows': result.rows };
     // res.render("pages/db", results);
-    res.redirect("/database");
+    res.redirect("/");
   });
   console.log("post request for after getUsersQuery");
 
 });
 
-// app.post("/changeuser", (req, res) => {
-//   console.log("post request for /changeuser");
-//   var name = req.body.name;
-//   var weight = req.body.weight;
-//   var height = req.body.height;
-//   var haircolor = req.body.haircolor;
-//   var gpa = req.body.gpa;
-//   var id = req.body.id;
-//   // var getUsersQuery = `INSERT INTO student (name, weight, height, haircolor, gpa) VALUES ('${name}','${weight}','${height}','${haircolor}','${gpa}')`;
-//   // var getUsersQuery = "INSERT INTO student VALUES ('will2', 125,100,'red',2.5)";
-//   // var getUsersQuery = "INSERT INTO student (name, weight, height, hcolor, gpa) VALUES ('" + name + "', " + weight + " , " + height + ",'" + haircolor + "', " + gpa + ")";
+app.post("/addnewuser", (req, res) => {
+  console.log("post request for /addnewuser");
+  var name = req.body.name;
+  var weight = req.body.weight;
+  var height = req.body.height;
+  var haircolor = req.body.haircolor;
+  var gpa = req.body.gpa;
+  // var getUsersQuery = `INSERT INTO student (name, weight, height, haircolor, gpa) VALUES ('${name}','${weight}','${height}','${haircolor}','${gpa}')`;
+  // var getUsersQuery = "INSERT INTO student VALUES ('will2', 125,100,'red',2.5)";
+  // var getUsersQuery = "INSERT INTO student (name, weight, height, hcolor, gpa) VALUES ('" + name + "', " + weight + " , " + height + ",'" + haircolor + "', " + gpa + ")";
 
-//   console.log("post request for getUsersQuery");
-//   pool.query('INSERT INTO student VALUES ($1, $2, $3, $4, $5)', [name, weight, height, haircolor, gpa], (error, result) => {
-//     if (error) {
-//       res.send(error);
-//     }
-//     console.log("post request for pool.query");
-//     // var results = { 'rows': result.rows };
-//     // res.render("pages/db", results);
-//     res.redirect("/database");
-//   });
-//   console.log("post request for after getUsersQuery");
+  console.log("post request for getUsersQuery");
+  pool.query('INSERT INTO student VALUES ($1, $2, $3, $4, $5)', [name, weight, height, haircolor, gpa], (error, result) => {
+    if (error) {
+      res.send(error);
+    }
+    console.log("post request for pool.query");
+    // var results = { 'rows': result.rows };
+    // res.render("pages/db", results);
+    res.redirect("/");
+  });
+  console.log("post request for after getUsersQuery");
 
-// });
+});
 
-// app.post("/adduser", (req, res) => {
-//   console.log("post request for /adduser");
-//   var uname = req.body.uname;
-//   var age = req.body.age;
-//   // res.send(`usersname: ${uname}, age: ${age}`);
-//   var addUserData = { userName: { uname }, userAge: { age } };
-//   console.log("addUserData object", addUserData);
-//   console.log("addUserData.userName object", addUserData.userName);
-//   console.log("addUserData.userAge object", addUserData.userAge);
-//   res.render("/database");
-// });
+app.post("/deleteduser", (req, res) => {
+  console.log("post request for /deleteduser");
+
+  var uid = req.body.rowID;
+  console.log("uid", req.body.rowID);
+
+  pool.query('DELETE FROM student WHERE id= $1', [uid], (error, result) => {
+    if (error) {
+      res.send(error);
+    }
+    console.log("post request for pool.query");
+    // var results = { 'rows': result.rows };
+    // res.render("pages/db", results);
+    res.redirect("/");
+  });
+  console.log("post request for after getUsersQuery");
+
+});
+
+
+app.post("/changeduser", (req, res) => {
+  console.log("post request for /changeduser");
+
+  var uid = req.body.rowID;
+  var name = req.body.name;
+  var weight = req.body.weight;
+  var height = req.body.height;
+  var haircolor = req.body.haircolor;
+  var gpa = req.body.gpa;
+  console.log("req.body", req.body);
+  // var getUsersQuery = `INSERT INTO student (name, weight, height, haircolor, gpa) VALUES ('${name}','${weight}','${height}','${haircolor}','${gpa}')`;
+  // var getUsersQuery = "INSERT INTO student VALUES ('will2', 125,100,'red',2.5)";
+  // var getUsersQuery = "INSERT INTO student (name, weight, height, hcolor, gpa) VALUES ('" + name + "', " + weight + " , " + height + ",'" + haircolor + "', " + gpa + ")";
+
+  pool.query('UPDATE student SET name = $1, weight = $2, height = $3, haircolor = $4, gpa = $5 WHERE id= $6 ', [name, weight, height, haircolor, gpa, uid], (error, result) => {
+    console.log("result",result);
+    if (error) {
+      res.send(error);
+      return;
+    }
+    console.log("INSIDE UPDATE student SET name = $1, weight = $2, height = $3, haircolor = $4");
+    // var results = { 'rows': result.rows };
+    // res.render("pages/db", results);
+    res.redirect("/");
+  });
+  console.log("AFTER UPDATE student SET name = $1, weight = $2, height = $3, haircolor = $4");
+
+});
 
 
 app.get("/changeuser", (req, res) => {
