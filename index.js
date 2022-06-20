@@ -5,10 +5,16 @@ const psqlPassword = '123psql'
 
 //to access postgres
 const { Pool } = require("pg");
-var pool;
-pool = new Pool({
-  connectionString: `postgres://postgres:${psqlPassword}@localhost/student`,
-});
+// var pool;
+// pool = new Pool({
+//   connectionString: `postgres://postgres:${psqlPassword}@localhost/student`,
+// });
+var pool = new Pool({
+  connectionString: process.env.DATABASE_URL || "postgres://postgres:root@localhost/cmpt276",
+ssl: {
+  rejectUnauthorized: false
+  }
+})
 
 // to set up server
 var app = express();
