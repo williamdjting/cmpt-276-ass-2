@@ -10,11 +10,11 @@
     <h1>No Users current in the database. Please add New User to Database</h1>
 
     <form class="" action="/addnewuser" method="post">
-      <input type="text" name="name" value="" placeholder="Name" /> <br />
-      <input type="number" name="weight" value="" placeholder="Weight" /> <br />
-      <input type="number" name="height" value="" placeholder="Height" /> <br />
-      <input type="text" name="haircolor" value="" placeholder="Haircolor" /> <br />
-      <input type="number" step="0.1" name="gpa" value="" placeholder="GPA" /> <br />
+      <input type="text" name="name" value="" placeholder="Name" required/> <br />
+      <input type="number" name="weight" value="" placeholder="Weight" required/> <br />
+      <input type="number" name="height" value="" placeholder="Height" required/> <br />
+      <input type="text" name="haircolor" value="" placeholder="Haircolor" required/> <br />
+      <input type="number" step="0.1" name="gpa" value="" placeholder="GPA" required/> <br />
       <!-- <input type="submit" name="sub" value="SEND TO SERVER" /> -->
       <button id="button" type="submit" name="adduserbutton">Add User</button>
     </form>

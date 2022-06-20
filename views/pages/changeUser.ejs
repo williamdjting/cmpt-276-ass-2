@@ -20,11 +20,11 @@
     <!-- </tr> -->
     <% var idIS = rows[0].id %>
     <form class="" action="/changeduser" method="post">
-      <input type="text" name="name" value="" placeholder=<%= rows[0].name %> /> <br />
-      <input type="number" name="weight" value="" placeholder=<%= rows[0].weight %> /> <br />
-      <input type="number" name="height" value="" placeholder=<%= rows[0].height %> /> <br />
-      <input type="text" name="haircolor" value="" placeholder=<%= rows[0].haircolor %> /> <br />
-      <input type="number" step="0.1" name="gpa" value="" placeholder=<%= rows[0].gpa %> /> <br />
+      <input type="text" name="name" value="" placeholder=<%= rows[0].name %> required/> <br />
+      <input type="number" name="weight" value="" placeholder=<%= rows[0].weight %> required/> <br />
+      <input type="number" name="height" value="" placeholder=<%= rows[0].height %> required/> <br />
+      <input type="text" name="haircolor" value="" placeholder=<%= rows[0].haircolor %> required/> <br />
+      <input type="number" step="0.1" name="gpa" value="" placeholder=<%= rows[0].gpa %> required/> <br />
       <input type="hidden" name="rowID" value=<%= idIS %> />
       <button id="button" type="submit" name="changeuserbutton">Change User</button>
     </form>
