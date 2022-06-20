@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
-const psqlPassword = '123psql'
+
 
 //to access postgres
 const { Pool } = require("pg");
