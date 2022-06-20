@@ -35,11 +35,7 @@ app.get("/database", (req, res) => {
   });
 });
 
-app.get("/changeuser", (req, res) => {
-  console.log("req.body inside /changeuser",req.body);
 
-  res.render("pages/changeUser");
-});
 
 app.get("/adduser", (req, res) => {
   res.render("pages/addUser");
@@ -108,11 +104,33 @@ app.post("/changeuser", (req, res) => {
 //   res.render("/database");
 // });
 
-app.get("/users/:id", (req, res) => {
-  var uid = req.params.id;
-  console.log(req.params.id);
+
+app.get("/changeuser", (req, res) => {
+  console.log("req.body inside /changeuser",req.body);
+
+  res.render("pages/changeUser");
+});
+
+app.post("/users/id", (req, res) => {
+
+  var userID = req.body.rowID;
+
+  console.log("userID inside /users/id",userID);
+
   // here suppose to search data base using the uid (user id)
-  res.send("got it!");
+
+  // var getUsersQuery = `SELECT * FROM student WHERE id = $1`;
+  pool.query(`SELECT * FROM student WHERE id = $1`, [userID], (error, result) => {
+    if (error) {
+      res.send(error);
+    }
+    console.log("result",result.rows);
+    console.log("result.rows[0].name",result.rows[0].name);
+    var results = { 'rows': result.rows };
+
+    res.render("pages/changeUser", results);
+  });
+  
 });
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -6,16 +6,22 @@
     <meta name="keywords" content="html tutorial template" />
   </head>
   <body>
-    <h1>Users</h1>
-
+    <h1>Updating the user:</h1>
+    <tr>
+      <td><%= rows[0].name %></td>
+      <td><%= rows[0].weight %></td>
+      <td><%= rows[0].height %></td>
+      <td><%= rows[0].haircolor %></td>
+      <td><%= rows[0].gpa %></td>
+    </tr>
     <form class="" action="/changeuser" method="post">
-      <input type="text" name="name" value="" placeholder="Name" /> <br />
-      <input type="number" name="weight" value="" placeholder="Weight" /> <br />
-      <input type="number" name="height" value="" placeholder="Height" /> <br />
-      <input type="text" name="haircolor" value="" placeholder="Haircolor" /> <br />
-      <input type="number" step="0.1" name="gpa" value="" placeholder="GPA" /> <br />
-
-      <button id="button" type="submit" name="">Change User</button>
+      <input type="text" name="name" value="" placeholder=<%= rows[0].name %> /> <br />
+      <input type="number" name="weight" value="" placeholder=<%= rows[0].weight %> /> <br />
+      <input type="number" name="height" value="" placeholder=<%= rows[0].height %> /> <br />
+      <input type="text" name="haircolor" value="" placeholder=<%= rows[0].haircolor %> /> <br />
+      <input type="number" step="0.1" name="gpa" value="" placeholder=<%= rows[0].gpa %> /> <br />
+      <!-- <input type="submit" name="sub" value="SEND TO SERVER" /> -->
+      <button id="button" type="submit" name="changeuserbutton">Change User</button>
     </form>
 
     <script type="text/javascript" src="./script.js"></script>

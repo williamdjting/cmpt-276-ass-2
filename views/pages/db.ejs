@@ -13,17 +13,22 @@
       <ul>
 
         <% for (var i =0; i < rows.length; i++) { %>
+          <% var idIS = rows[i].id %>
           <tr>
+            <form class="" action="/users/id" method="post" >
+            <input type="hidden" name="rowID" value=<%= idIS %> />
             <td><%= rows[i].name %></td>
             <td><%= rows[i].weight %></td>
             <td><%= rows[i].height %></td>
             <td><%= rows[i].haircolor %></td>
             <td><%= rows[i].gpa %></td>
+            <% var username = rows[i].id %>
             <td>
-            <form class="" action="/changeuser" method="get">
-              
-              <button id="button" type="submit" name="adduserbutton">Change User</button>
+            
+              <!-- <input type="text" name="username" value=""/> -->
+              <button id="changeuserbutton" type="submit" name="username">Change User</button>
               <td><%= rows[i].id %></td>
+              <td><%= username %></td>
             </form>
             </td>
             <br>
