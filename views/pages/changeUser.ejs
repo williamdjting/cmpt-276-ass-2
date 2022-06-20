@@ -7,15 +7,17 @@
   </head>
   <body>
     <%- include ("../partials/nav.ejs") %>
+    
     <div class="container">
     <h1>Update the User</h1>
-    <tr>
-      <td><%= rows[0].name %></td>
-      <td><%= rows[0].weight %></td>
-      <td><%= rows[0].height %></td>
-      <td><%= rows[0].haircolor %></td>
-      <td><%= rows[0].gpa %></td>
-    </tr>
+    <!-- <tr> -->
+      <li>Name: <%= rows[0].name %></li>
+      <li>Weight: <%= rows[0].weight %></li>
+      <li>Height: <%= rows[0].height %></li>
+      <li>Haircolour: <%= rows[0].haircolor %></li>
+      <li>GPA: <%= rows[0].gpa %></li>
+      <br>
+    <!-- </tr> -->
     <% var idIS = rows[0].id %>
     <form class="" action="/changeduser" method="post">
       <input type="text" name="name" value="" placeholder=<%= rows[0].name %> /> <br />
