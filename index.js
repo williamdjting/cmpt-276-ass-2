@@ -10,7 +10,8 @@ const { Pool } = require("pg");
 //   connectionString: `postgres://postgres:${psqlPassword}@localhost/student`,
 // });
 var pool = new Pool({
-  connectionString: process.env.DATABASE_URL || "postgres://postgres:root@localhost/cmpt276",
+  // connectionString: process.env.DATABASE_URL || "postgres://postgres:root@localhost/cmpt276",
+  connectionString: process.env.DATABASE_URL
 ssl: {
   rejectUnauthorized: false
   }
