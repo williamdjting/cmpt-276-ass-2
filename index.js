@@ -5,10 +5,7 @@ const psqlPassword = '123psql'
 
 //to access postgres
 const { Pool } = require("pg");
-// var pool;
-// pool = new Pool({
-//   connectionString: `postgres://postgres:${psqlPassword}@localhost/student`,
-// });
+
 var pool = new Pool({
   // connectionString: process.env.DATABASE_URL || "postgres://postgres:root@localhost/cmpt276",
   connectionString: process.env.DATABASE_URL,
@@ -25,9 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// app.get("/", (req, res) => {
-//   res.render("pages/index");
-// });
+
 
 app.get("/", (req, res) => {
   var getUsersQuery = `SELECT * FROM student`;
