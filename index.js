@@ -29,6 +29,7 @@ app.get("/", (req, res) => {
   pool.query(getUsersQuery, (error, result) => {
     if (error) {
       res.send(error);
+      return;
     }
     console.log("result",result);
     if (result.rowCount === 0) {
@@ -67,6 +68,7 @@ app.post("/adduser", (req, res) => {
   pool.query('INSERT INTO student VALUES ($1, $2, $3, $4, $5)', [name, weight, height, haircolor, gpa], (error, result) => {
     if (error) {
       res.send(error);
+      return;
     }
     console.log("post request for pool.query");
     // var results = { 'rows': result.rows };
@@ -92,6 +94,7 @@ app.post("/addnewuser", (req, res) => {
   pool.query('INSERT INTO student VALUES ($1, $2, $3, $4, $5)', [name, weight, height, haircolor, gpa], (error, result) => {
     if (error) {
       res.send(error);
+      return;
     }
     console.log("post request for pool.query");
     // var results = { 'rows': result.rows };
@@ -111,6 +114,7 @@ app.post("/deleteduser", (req, res) => {
   pool.query('DELETE FROM student WHERE id= $1', [uid], (error, result) => {
     if (error) {
       res.send(error);
+      return;
     }
     console.log("post request for pool.query");
     // var results = { 'rows': result.rows };
@@ -170,6 +174,7 @@ app.post("/changeuser", (req, res) => {
   pool.query(`SELECT * FROM student WHERE id = $1`, [userID], (error, result) => {
     if (error) {
       res.send(error);
+      return;
     }
     console.log("result",result.rows);
     console.log("result.rows[0].name",result.rows[0].name);
@@ -193,6 +198,7 @@ app.post("/deleteuser", (req, res) => {
   pool.query(`SELECT * FROM student WHERE id = $1`, [userID], (error, result) => {
     if (error) {
       res.send(error);
+      return;
     }
     console.log("result",result.rows);
     console.log("result.rows[0].name",result.rows[0].name);
