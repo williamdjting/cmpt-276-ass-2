@@ -204,7 +204,7 @@ app.post("/deleteuser", (req, res) => {
     console.log("result.rows[0].name",result.rows[0].name);
     var results = { 'rows': result.rows };
 
-    res.render("pages/deleteuser", results);
+    res.render("pages/deleteUser", results);
   });
   
 });
